@@ -35,14 +35,6 @@ export const signup = async(req,res)=>{
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt)
 
-        }else{
-            res.status(400).json({message:"Invalid user data"})
-        }
-    } catch (error) {
-        console.log("Error in signup controller")
-        res.status(500).json({message:"Internal server error..."})
-    }
-}
         const newUser = new User({
             fullName,
             email,
@@ -61,3 +53,11 @@ export const signup = async(req,res)=>{
                 profilePic: newUser.profilePic,
                 dob: newUser.dob
             });
+        }else{
+            res.status(400).json({message:"Invalid user data"})
+        }
+    } catch (error) {
+        console.log("Error in signup controller")
+        res.status(500).json({message:"Internal server error..."})
+    }
+}
