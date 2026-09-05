@@ -1,6 +1,7 @@
 // const express = require('express')
 import express from "express"
 const app = express()
+import cookieParser from "cookie-parser"
 import { ENV } from "./lib/env.js"
 import { connectDB } from "./lib/db.js"
 
@@ -10,6 +11,9 @@ import messageRoutes from "./routes/message.route.js"
 const PORT= ENV.PORT
 
 app.use(express.json());
+app.use(cookieParser())
+
+
 app.use("/api/auth",authRoutes)
 app.use("/api/messages",messageRoutes)
 
